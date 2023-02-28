@@ -63,7 +63,7 @@ export default function Game(props: { challenge: INewGameData }) {
             setPosition={setPosition}
           />
           <button
-            disabled={position === null}
+            disabled={position === null || challengeState.isFinished}
             className="btn--submit"
             onClick={() => {
               submitGuess(position!);
