@@ -42,7 +42,11 @@ export default function Game(props: { challenge: INewGameData }) {
         </ul>
       </section>
       <section className="clue-container">
-        <Carousel previousGuesses={challengeState.guesses} images={images} />
+        <Carousel
+          previousGuesses={challengeState.guesses}
+          images={images}
+          isFinished={challengeState.isFinished}
+        />
       </section>
       <Draggable bounds="body" handle="#map_drag_handle">
         {/* Bounds = body prevents the minimized map from falling offscreen on shrinking action */}

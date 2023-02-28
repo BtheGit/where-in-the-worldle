@@ -7,13 +7,18 @@ import "swiper/css/bundle";
 export type CarouselProps = {
   previousGuesses: any[];
   images: any[];
+  isFinished: boolean;
 };
 
 export default function Carousel(props: CarouselProps) {
-  const { previousGuesses, images } = props;
+  const { previousGuesses, images, isFinished } = props;
   const swiperRef: any = useRef(null);
+  const imageList = isFinished
+    ? images
+    : images.slice(0, previousGuesses.length + 1);
   useEffect(() => {
-    swiperRef.current.slideTo(previousGuesses.length);
+    // swiperRef.current.slideTo(previousGuesses.length);
+    swiperRef.current.slideTo(imageList.length);
   }, [previousGuesses]);
   return (
     <Swiper
@@ -24,7 +29,7 @@ export default function Carousel(props: CarouselProps) {
       modules={[Navigation]}
       allowTouchMove={false}
     >
-      {images.slice(0, previousGuesses.length + 1).map((src, i) => (
+      {imageList.map((src, i) => (
         <SwiperSlide key={i}>
           <ZoomableStaticImage src={src} />
         </SwiperSlide>
