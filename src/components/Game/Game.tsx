@@ -62,7 +62,7 @@ export default function Game(props: { challenge: INewGameData }) {
               lat: position?.lat || 0,
               lng: position?.lng || 0,
             }}
-            previousGuesses={challengeState.guesses}
+            challengeState={challengeState}
             position={position}
             setPosition={setPosition}
           />

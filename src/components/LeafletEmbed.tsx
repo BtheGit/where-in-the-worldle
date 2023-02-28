@@ -1,12 +1,12 @@
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
-import type { ILocationGuess } from "../types";
+import type { ILocationGuess, IGameState } from "../types";
 
 //https://react-leaflet.js.org/docs/start-introduction/
 
 export type LeafetEmbedProps = {
   startingLocation: { lat: number; lng: number };
-  previousGuesses?: ILocationGuess[];
+  challengeState: IGameState;
 };
 
 export type LocationMarkerProps = {
@@ -58,16 +58,21 @@ const handleMapResize = (map: L.Map) => {
 
 export default function LeafletEmbed({
   startingLocation,
-  previousGuesses,
+  challengeState,
   position,
   setPosition,
 }: LeafetEmbedProps & LocationMarkerProps) {
   const { lng, lat } = startingLocation;
+  // NOTE: Center is still not behaving as hoped for (not recentering after guess`)
   return (
     <MapContainer
       id="leaflet_container"
       className="embed-container"
-      center={[lat, lng]}
+      center={
+        challengeState.isFinished
+          ? [challengeState.location.lat, challengeState.location.lng]
+          : [lat, lng]
+      }
       zoom={2}
       attributionControl={false}
       ref={(map: L.Map | null) => {
@@ -82,17 +87,19 @@ export default function LeafletEmbed({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {previousGuesses?.length &&
-        previousGuesses.map((guess, i) => {
-          const { lat, lng, score } = guess;
-          return (
-            <Marker
-              key={i}
-              position={{ lat, lng }}
-              icon={customMarkerIcon(`score--${score}`)}
-            ></Marker>
-          );
-        })}
+      {challengeState.guesses.map((guess, i) => {
+        const { lat, lng, score } = guess;
+        return (
+          <Marker
+            key={i}
+            position={{ lat, lng }}
+            icon={customMarkerIcon(`score--${score}`)}
+          ></Marker>
+        );
+      })}
+      {challengeState.isFinished && (
+        <Marker position={challengeState.location}></Marker>
+      )}
       <LocationMarker position={position} setPosition={setPosition} />
     </MapContainer>
   );

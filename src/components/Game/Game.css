@@ -139,12 +139,13 @@ main {
 .scores-container ul {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: nowrap;
 }
 
 .score {
   outline: 1px solid white;
   height: 10px;
-  width: 10vw;
+  min-width: calc(100% / 6);
   opacity: 0.7;
   background: var(--primary-color-guess);
 }
