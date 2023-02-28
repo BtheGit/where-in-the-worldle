@@ -2,7 +2,9 @@
 
 const BASE_URL = "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/";
 const RESOLUTION = "640x480@2x";
-const ACCESS_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
+// The fallback is to support netlify where the .env file isnt available to the vite build.
+const ACCESS_TOKEN =
+  import.meta.env.PUBLIC_MAPBOX_TOKEN || process.env.PUBLIC_MAPBOX_TOKEN;
 
 export interface IMapboxStaticUrlSettings {
   lat: number;
