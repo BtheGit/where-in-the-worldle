@@ -2,9 +2,7 @@
 
 const BASE_URL = "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/";
 const RESOLUTION = "640x480@2x";
-// TODO: Access Token in KV/function - not client.
-const ACCESS_TOKEN =
-  "pk.eyJ1IjoiYnJlbmRhbmJlbHR6IiwiYSI6ImNqOTdzdzdqNTBhcXAzM3FtbGl0emZrZGQifQ.sO7oyXvLzP3NsnYm5cr_BA";
+const ACCESS_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 
 export interface IMapboxStaticUrlSettings {
   lat: number;
