@@ -1,4 +1,4 @@
-import { useLocalStorage } from "usehooks-ts";
+import { useLocalStorage, useSessionStorage } from "usehooks-ts";
 import type {
   INewGameData,
   ILocationGuess,
@@ -12,8 +12,9 @@ export function useChallenge(
 ): [IGameState, (location: ILocation) => void] {
   const { location, images } = challenge;
   const { lat, lng } = location;
-  const key = `v1__CHALLENGE__${lat}${lng}`;
-  const [state, setState] = useLocalStorage(key, {
+  const key = `WITW__v1__CHALLENGE__${lat}${lng}`;
+  // Using sessionStorage while in dev. Should use env flag, but whatever for now.
+  const [state, setState] = useSessionStorage(key, {
     id: key,
     location,
     images,
