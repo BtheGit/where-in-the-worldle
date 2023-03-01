@@ -108,7 +108,9 @@ export default function LeafletEmbed({
       {challengeState.isFinished && (
         <Marker position={challengeState.location}></Marker>
       )}
-      <LocationMarker position={position} setPosition={setPosition} />
+      {!challengeState.isFinished && (
+        <LocationMarker position={position} setPosition={setPosition} />
+      )}
     </MapContainer>
   );
 }
