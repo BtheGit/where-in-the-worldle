@@ -2,6 +2,10 @@ import L from "leaflet";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import type { ILocationGuess, IGameState } from "../types";
 
+// TODO: Protect key: https://documentation.maptiler.com/hc/en-us/articles/360020806037-Protect-your-map-key
+const MAPTILER_KEY =
+  import.meta.env.PUBLIC_MAPTILER_KEY || process.env.PUBLIC_MAPTILER_KEY;
+
 //https://react-leaflet.js.org/docs/start-introduction/
 
 export type LeafetEmbedProps = {
@@ -74,7 +78,7 @@ export default function LeafletEmbed({
           : [lat, lng]
       }
       zoom={2}
-      attributionControl={false}
+      attributionControl={true}
       ref={(map: L.Map | null) => {
         // https://github.com/PaulLeCam/react-leaflet/issues/974
         // Change to accomodate deprecated whenCreated method
@@ -83,9 +87,13 @@ export default function LeafletEmbed({
         }
       }}
     >
-      <TileLayer
+      {/* <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      /> */}
+      <TileLayer
+        attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OSM contribs</a>'
+        url={`https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`}
       />
       {challengeState.guesses.map((guess, i) => {
         const { lat, lng, score } = guess;
