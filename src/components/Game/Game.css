@@ -12,7 +12,7 @@ header {
   color: white;
 }
 
-main {
+.game-container {
   position: relative;
   height: 100%;
   width: 100%;
@@ -125,7 +125,7 @@ main {
 }
 
 .score--5 {
-  --primary-color-guess: gold;
+  --primary-color-guess: rgb(136, 0, 177);
 }
 
 .scores-container {
@@ -143,11 +143,14 @@ main {
 }
 
 .score {
+  background: var(--primary-color-guess);
+}
+
+.scores-container .score {
   outline: 1px solid white;
   height: 10px;
   min-width: calc(100% / 6);
   opacity: 0.7;
-  background: var(--primary-color-guess);
 }
 
 .marker-container svg {
@@ -157,4 +160,56 @@ main {
 
 .marker-container .marker-inner {
   fill: var(--primary-color-guess);
+}
+
+.results-container {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  height: 80%;
+  width: 80%;
+  background: rgba(79, 79, 79, 0.829);
+  z-index: 100;
+  text-align: center;
+}
+
+.results__nav {
+  height: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.results__nav button.btn--close {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid purple;
+}
+
+.results__main {
+  padding: 20px;
+}
+
+.results-container h1 {
+  font-size: 2rem;
+}
+
+.results__chart {
+}
+
+.results__chart .score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  height: 50px;
+  max-width: 250px;
+  margin: 5px auto;
+  padding: 0 15px;
+  color: black;
+}
+
+.guess-distance span {
+  font-size: 0.75em;
 }

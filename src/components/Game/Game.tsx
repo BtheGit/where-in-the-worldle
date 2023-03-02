@@ -6,6 +6,7 @@ import Draggable from "react-draggable";
 import Carousel from "./Carousel";
 import { useChallenge } from "../../util/hooks";
 import "./Game.css";
+import ResultsSplash from "./ResultsSplash";
 
 export default function Game(props: { challenge: INewGameData }) {
   const mapContainerRef = useRef(null);
@@ -33,7 +34,7 @@ export default function Game(props: { challenge: INewGameData }) {
   }, [isHover]);
 
   return (
-    <>
+    <div className="game-container">
       <section className="scores-container">
         <ul>
           {challengeState.guesses.map(({ score }, i) => (
@@ -66,21 +67,25 @@ export default function Game(props: { challenge: INewGameData }) {
             position={position}
             setPosition={setPosition}
           />
-          <button
-            disabled={position === null || challengeState.isFinished}
-            className="btn--submit"
-            onClick={() => {
-              submitGuess(position!);
-            }}
-          >
-            Submit
-          </button>
-
+          {!challengeState.isFinished && (
+            <button
+              disabled={position === null || challengeState.isFinished}
+              className="btn--submit"
+              onClick={() => {
+                submitGuess(position!);
+              }}
+            >
+              Submit
+            </button>
+          )}
           <div id="map_drag_handle" className="drag-handle">
             ✥
           </div>
         </section>
       </Draggable>
-    </>
+      {challengeState.isFinished && (
+        <ResultsSplash challengeState={challengeState} />
+      )}
+    </div>
   );
 }
