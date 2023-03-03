@@ -25,7 +25,7 @@ export const generate = async () => {
   const ZOOM_LEVELS = [15.5, 14, 12, 10, 8, 6.5, 3];
   const { lat, lng } = location;
   const images = ZOOM_LEVELS.map((zoom) => getStaticUrl({ lat, lng, zoom }));
-  const gameData: INewGameData = { location, images };
+  const gameData: INewGameData = { location, images, date: Date.now() };
   return gameData;
 };
 

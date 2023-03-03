@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import type { INewGameData, ILocation } from "../../types";
-import { useHover } from "usehooks-ts";
+import { useHover, useFetch } from "usehooks-ts";
 import LeafletEmbed from "../LeafletEmbed";
 import Draggable from "react-draggable";
 import Carousel from "./Carousel";
@@ -8,7 +8,21 @@ import { useChallenge } from "../../util/hooks";
 import "./Game.css";
 import ResultsSplash from "./ResultsSplash";
 
-export default function Game(props: { challenge: INewGameData }) {
+const DAILY_CHALLENGE_ENDPOINT = "/api/v1/daily-challenge";
+
+export default function Game() {
+  const { data, error } = useFetch(DAILY_CHALLENGE_ENDPOINT);
+  // TODO: Error Screen
+  // TODO: Loading Screen
+  if (error) {
+    return <p>Error</p>;
+  } else if (!data) {
+    return <p>Loading</p>;
+  }
+  return <Challenge challenge={data as INewGameData} />;
+}
+
+export function Challenge(props: { challenge: INewGameData }) {
   const mapContainerRef = useRef(null);
   const isHover = useHover(mapContainerRef);
   const { challenge } = props;
@@ -84,7 +98,7 @@ export default function Game(props: { challenge: INewGameData }) {
         </section>
       </Draggable>
       {challengeState.isFinished && (
-        <ResultsSplash challengeState={challengeState} />
+        <ResultsSplash challengeState={challengeState} date={challenge.date} />
       )}
     </div>
   );

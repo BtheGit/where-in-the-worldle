@@ -10,7 +10,7 @@ import { calculateDistance, calculateScore } from "./challenge";
 export function useChallenge(
   challenge: INewGameData
 ): [IGameState, (location: ILocation) => void] {
-  const { location, images } = challenge;
+  const { location, images, date } = challenge;
   const { lat, lng } = location;
   const key = `WITW__v1__CHALLENGE__${lat}${lng}`;
   // Using sessionStorage while in dev. Should use env flag, but whatever for now.
@@ -18,6 +18,7 @@ export function useChallenge(
     id: key,
     location,
     images,
+    date,
     guesses: [] as ILocationGuess[],
     isFinished: false,
   });

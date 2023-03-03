@@ -1,19 +1,22 @@
 import { useState } from "react";
-import type { IGameState } from "../../types";
+import type { IGameState, INewGameData } from "../../types";
 
 export type ResultsSplashProps = {
   challengeState: IGameState;
+  date: INewGameData["date"];
 };
 
 export default function ResultsSplash(props: ResultsSplashProps) {
-  const { challengeState } = props;
+  const { challengeState, date } = props;
   const [isActive, setIsActive] = useState(true);
   // TODOS: MVP
+  // [x] Challenge date
   // Flavor text based on results
-  // Close Button
-  // Display guesses with distance
+  // [x] Close Button
+  // [x] Display guesses with distance
   // Get description of location.
   // Responsive to widescreen on phones. Height is too much currently
+  // Time when next challenge available
   if (!isActive) {
     return null;
   }
@@ -31,7 +34,7 @@ export default function ResultsSplash(props: ResultsSplashProps) {
           </button>
         </div>
         <div className="results__main">
-          <h1>Results for [CURRENT DATE]</h1>
+          <h1>Results for {new Date(date).toLocaleDateString()}</h1>
           <p>[FLAVOR TEXT]</p>
           <ul className="results__chart">
             {challengeState.guesses.map((guess, i) => {
@@ -44,7 +47,7 @@ export default function ResultsSplash(props: ResultsSplashProps) {
               const units = distance >= 1000 ? "km" : "m";
 
               return (
-                <li>
+                <li key={i}>
                   <div className={`score score--${score}`}>
                     <p>{i + 1}.</p>
                     <p className="guess-distance">

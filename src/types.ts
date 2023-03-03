@@ -22,6 +22,7 @@ export type IWorldCity = {
 export type INewGameData = {
   location: IWorldCity;
   images: string[];
+  date: number;
 };
 
 export type ILocation = {

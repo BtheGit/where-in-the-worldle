@@ -1,13 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Game from '../components/Game/Game';
-import { generate } from '../util/challenge';
-const newChallenge = await generate();
+
 
 ---
 
 <Layout title="Where in the Worldle?">
-	<Game client:only="react" challenge={newChallenge}/>
+	<Game client:only="react" />
 </Layout>
 
 <style is:global>
