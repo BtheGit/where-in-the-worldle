@@ -44,7 +44,18 @@ export function Challenge(props: { challenge: INewGameData }) {
     });
   }, []);
   useEffect(() => {
-    setMapActive(isHover);
+    let timeout: NodeJS.Timeout;
+    if (!isHover) {
+      timeout = setTimeout(() => {
+        setMapActive(isHover);
+      }, 500);
+    } else {
+      setMapActive(isHover);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [isHover]);
 
   return (
