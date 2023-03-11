@@ -1,4 +1,4 @@
-import type { INewGameData } from "../types";
+import type { INewGameData, IScoreStep } from "../types";
 import { getRandomLocation } from "./location";
 import { getStaticUrl } from "./mapbox";
 
@@ -42,12 +42,34 @@ export const calculateScore = (proportionBasis: number, distance: number) => {
   } else if (distance <= proportionBasis * 2000) {
     // Rigth small country/province area.
     return 2;
-  } else if (distance <= proportionBasis * 20000) {
+  } else if (distance <= proportionBasis * 20_000) {
     // Right sub continent sized area.
     return 1;
   } else {
     return 0;
   }
+};
+
+export const defaultScoreSteps = [
+  { limit: 100, score: 5 },
+  { limit: 2000, score: 4 },
+  { limit: 50_000, score: 3 },
+  { limit: 200_000, score: 2 },
+  { limit: 2_000_000, score: 1 },
+];
+
+export const calculateScoreFromSteps = (
+  distance: number,
+  steps: IScoreStep[] = defaultScoreSteps
+) => {
+  const stepsMutable = [...steps];
+  while (stepsMutable.length) {
+    const step = stepsMutable.shift();
+    if (distance <= step!.limit) {
+      return step!.score;
+    }
+  }
+  return 0;
 };
 
 export const calculateDistance = (

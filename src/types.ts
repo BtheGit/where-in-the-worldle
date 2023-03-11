@@ -37,3 +37,8 @@ export type IGameState = {
   guesses: ILocationGuess[];
   isFinished: boolean;
 };
+
+export type IScoreStep = {
+  limit: number;
+  score: number;
+};

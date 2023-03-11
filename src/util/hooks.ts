@@ -5,7 +5,11 @@ import type {
   ILocation,
   IGameState,
 } from "../types";
-import { calculateDistance, calculateScore } from "./challenge";
+import {
+  calculateDistance,
+  calculateScoreFromSteps,
+  defaultScoreSteps,
+} from "./challenge";
 
 export function useChallenge(
   challenge: INewGameData
@@ -24,7 +28,6 @@ export function useChallenge(
   });
   const newGuess = (position: ILocation) => {
     const distance = calculateDistance(location, position);
-    const score = calculateScore(100, distance);
     if (distance >= 1000) {
       console.debug(
         Math.round((distance / 1000 + Number.EPSILON) * 10) / 10 + "km"
@@ -32,6 +35,7 @@ export function useChallenge(
     } else {
       console.debug(Math.round(distance) + "m");
     }
+    const score = calculateScoreFromSteps(distance);
     const newGuess = {
       ...position,
       score,
