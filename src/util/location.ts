@@ -1,5 +1,5 @@
-// import WORLD_CITIES from "../../data/worldcities.json";
-import WORLD_CITIES from "../data/worldcitiesdev.json";
+import WORLD_CITIES from "../data/worldcities_over100k.json";
+// import WORLD_CITIES from "../data/worldcitiesdev.json";
 import type { IWorldCity } from "../types";
 
 // Trying to implement fix https://github.com/remix-run/remix/issues/1555 runs into problem with fs/promises
