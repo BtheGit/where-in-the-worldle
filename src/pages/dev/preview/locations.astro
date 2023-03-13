@@ -1,0 +1,36 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+// import '../../../styles/global.css'
+import { getLocations } from '../../../util/location';
+
+const locations = await getLocations();
+const locationsByCountry = locations.reduce((acc, curr) => {
+  const country = curr.country;
+  if(acc[country]){
+    acc[country].push(curr)
+  }
+  else {
+    acc[country] = [curr]
+  }
+  return acc
+}, {})
+const locationCountByCountry = Object.entries(locationsByCountry).map(([country, cities]) => [country, cities.length]).sort((a,b) => b[1] - a[1])
+---
+
+<Layout title="Where in the Worldle?">
+  <!-- <ul>
+    {
+      locationCountByCountry.map(([country, count]) => <li>{country}: {count}</li>)
+    }
+  </ul> -->
+  <ul>
+    {
+      locations.map((location: { city: string, country: string, population: number}, idx: number) => {
+        const { city, country, population } = location;
+        return (
+          <li><a href={`/dev/preview/location/${idx}`}>{city}, {country}: {population}</a></li>
+        )
+      })
+    }
+  </ul>
+</Layout>

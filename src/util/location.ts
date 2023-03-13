@@ -21,9 +21,7 @@ export const getCityData = async () => {
 
 const counter = 0;
 
-export const getRandomLocation = async (
-  seed = Math.floor(Math.random() * 50)
-) => {
+export const getLocation = async (seed = Math.floor(Math.random() * 50)) => {
   const WORLD_CITIES = await getCityData();
   const locData = (WORLD_CITIES as any)[seed];
   return locData;
@@ -41,4 +39,10 @@ export const getLocationById = async (locationId: number) => {
     ({ id }: IWorldCity) => id === locationId
   );
   return filtered.length ? filtered[0] : null;
+};
+
+// TODO: This obviously is a redundant function. Revisit the reasons for splitting later.
+export const getLocations = async () => {
+  const WORLD_CITIES = await getCityData();
+  return WORLD_CITIES;
 };

@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Game from '../../components/Game/Game';
+import '../../styles/global.css'
+
+const { id } = Astro.params;
+---
+
+<Layout title="Where in the Worldle?">
+	<Game client:only="react" challengeId={id!}/>
+</Layout>

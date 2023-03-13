@@ -10,8 +10,17 @@ import ResultsSplash from "./ResultsSplash";
 
 const DAILY_CHALLENGE_ENDPOINT = "/api/v1/daily-challenge";
 
-export default function Game() {
-  const { data, error } = useFetch(DAILY_CHALLENGE_ENDPOINT);
+export type IGameProps = {
+  challengeId?: string;
+};
+
+export default function Game(props: IGameProps) {
+  const { challengeId } = props;
+  const endpoint = `/api/v1/${
+    challengeId ? `challenge/${challengeId}` : "daily-challenge"
+  }`;
+  const { data, error } = useFetch(endpoint);
+  console.log(data);
   // TODO: Error Screen
   // TODO: Loading Screen
   if (error) {

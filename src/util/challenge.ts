@@ -1,5 +1,5 @@
 import type { INewGameData, IScoreStep } from "../types";
-import { getRandomLocation } from "./location";
+import { getLocation } from "./location";
 import { getStaticUrl } from "./mapbox";
 
 // https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
@@ -21,7 +21,16 @@ export function haversineDistance(
 }
 
 export const generate = async () => {
-  const location = await getRandomLocation(10);
+  const location = await getLocation(10);
+  const ZOOM_LEVELS = [15.5, 14, 12, 10, 8, 6.5, 3];
+  const { lat, lng } = location;
+  const images = ZOOM_LEVELS.map((zoom) => getStaticUrl({ lat, lng, zoom }));
+  const gameData: INewGameData = { location, images, date: Date.now() };
+  return gameData;
+};
+
+export const generateById = async (locationId: number = 10) => {
+  const location = await getLocation(locationId);
   const ZOOM_LEVELS = [15.5, 14, 12, 10, 8, 6.5, 3];
   const { lat, lng } = location;
   const images = ZOOM_LEVELS.map((zoom) => getStaticUrl({ lat, lng, zoom }));

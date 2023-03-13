@@ -1,0 +1,16 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import '../../../../styles/global.css'
+import { generateById } from '../../../../util/challenge';
+const { id } = Astro.params;
+const locationData = await generateById(id);
+const { location, images} = locationData;
+---
+
+<Layout title="Where in the Worldle?">
+  {
+    images.map((url) => 
+      <img src={url}/>
+    )
+  }
+</Layout>
