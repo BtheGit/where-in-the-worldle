@@ -20,7 +20,6 @@ export default function Game(props: IGameProps) {
     challengeId ? `challenge/${challengeId}` : "daily-challenge"
   }`;
   const { data, error } = useFetch(endpoint);
-  console.log(data);
   // TODO: Error Screen
   // TODO: Loading Screen
   if (error) {

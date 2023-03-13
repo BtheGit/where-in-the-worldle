@@ -53,7 +53,7 @@ export function customMarkerIcon(customClass?: string) {
     className: `marker-container ${customClass}`,
     html: svgTemplate,
     iconSize: [40, 40],
-    iconAnchor: [12, 24],
+    iconAnchor: [20, 40],
     popupAnchor: [7, -16],
   });
 }
