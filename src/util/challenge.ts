@@ -54,7 +54,7 @@ export const defaultScoreSteps = [
   { limit: 100, score: 5 },
   { limit: 2000, score: 4 },
   { limit: 50_000, score: 3 },
-  { limit: 200_000, score: 2 },
+  { limit: 750_000, score: 2 },
   { limit: 2_000_000, score: 1 },
 ];
 

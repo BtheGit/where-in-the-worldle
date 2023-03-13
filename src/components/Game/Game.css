@@ -185,6 +185,7 @@ header {
   padding: 5px;
   margin-right: 10px;
   border: 1px solid purple;
+  cursor: pointer;
 }
 
 .results__main {
