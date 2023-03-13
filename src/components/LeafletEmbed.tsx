@@ -1,6 +1,13 @@
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  useMapEvents,
+  Circle,
+} from "react-leaflet";
 import type { ILocationGuess, IGameState } from "../types";
+import { defaultScoreSteps } from "../util/challenge";
 
 // TODO: Protect key: https://documentation.maptiler.com/hc/en-us/articles/360020806037-Protect-your-map-key
 const MAPTILER_KEY =
@@ -60,6 +67,40 @@ const handleMapResize = (map: L.Map) => {
   resizeObserver.observe(container);
 };
 
+type ILocationRevealProps = {
+  challengeState: IGameState;
+};
+
+// TODO: Make this dynamic (it needs to be shared with CSS)
+const scoreColors = [
+  "red",
+  "orange",
+  "yellow",
+  "chartreuse",
+  "green",
+  "purple",
+];
+
+export function LocationReveal(props: ILocationRevealProps) {
+  const { challengeState } = props;
+  return (
+    <>
+      {defaultScoreSteps.reverse().map(({ limit, score }, i) => {
+        // reversing to make sure circle stack correctly
+        return (
+          <Circle
+            key={i}
+            center={[challengeState.location.lat, challengeState.location.lng]}
+            radius={limit}
+            pathOptions={{ color: scoreColors[score] }}
+          />
+        );
+      })}
+      <Marker position={challengeState.location}></Marker>
+    </>
+  );
+}
+
 export default function LeafletEmbed({
   startingLocation,
   challengeState,
@@ -106,7 +147,7 @@ export default function LeafletEmbed({
         );
       })}
       {challengeState.isFinished && (
-        <Marker position={challengeState.location}></Marker>
+        <LocationReveal challengeState={challengeState} />
       )}
       {!challengeState.isFinished && (
         <LocationMarker position={position} setPosition={setPosition} />
