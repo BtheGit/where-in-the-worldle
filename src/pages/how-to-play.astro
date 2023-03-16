@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Game from '../components/Game/Game';
 import Sidebar from '../components/SiteMenu'
 import '../styles/global.css'
 
@@ -8,6 +7,7 @@ import '../styles/global.css'
 
 <Layout title="Where in the Worldle?">
 	<Sidebar client:only="react" />
-	<Game client:only="react" />
+  <main>
+    <h1>How To Play</h1>
+  </main>
 </Layout>
-
