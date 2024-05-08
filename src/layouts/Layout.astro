@@ -1,4 +1,6 @@
 ---
+import PostHog from "../components/posthog.astro";
+
 export interface Props {
   title: string;
 }
@@ -24,9 +26,9 @@ const { title } = Astro.props;
       defer
       data-domain="whereintheworldle.com"
       src="https://plausible.sunflowersandsky.com/js/script.js"></script>
+    <PostHog />
   </head>
   <body>
     <slot />
-  </body>
+  </body><style is:global></style>
 </html>
-<style is:global></style>
