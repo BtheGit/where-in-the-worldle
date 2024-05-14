@@ -1,4 +1,4 @@
-.sb-button {
+/* .sb-button {
   position: fixed;
   right: 0;
   top: 0;
@@ -9,4 +9,74 @@
   align-items: center;
   z-index: 99;
   font-size: 24px;
+}
+
+.sidebar-container {
+  --mask: radial-gradient(18.66px at 25.6px 50%, #000 99%, #0000 101%) 0
+      calc(50% - 32px) / 100% 64px,
+    radial-gradient(18.66px at -9.6px 50%, #0000 99%, #000 101%) 16px 50%/100%
+      64px repeat-y;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+  background: linear-gradient(
+    135deg,
+    #1f005c,
+    #5b0060,
+    #870160,
+    #ac255e,
+    #ca485c,
+    #e16b5c,
+    #f39060,
+    #ffb56b
+  );
+} */
+
+.drawer-trigger {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  z-index: 100;
+  font-size: 20px;
+  filter: drop-shadow(0px 0px 2px black)
+    drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5))
+    drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
+}
+
+.drawer-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  inset: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.drawer-outer {
+  flex-direction: column;
+  height: 100%;
+  max-height: 90%;
+  display: flex;
+  margin-top: 6rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.drawer-inner {
+  padding: 1rem;
+  background-color: white;
+  color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  flex: 1 1 0%;
+}
+
+[vaul-handle] {
+  background-color: rgb(52 77 172);
+  margin-bottom: 2rem;
+}
+
+.drawer-content {
+  max-width: 28rem;
+  margin: 0 auto;
 }
