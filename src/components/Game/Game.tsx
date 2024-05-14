@@ -68,6 +68,10 @@ export function Challenge(props: { challenge: INewGameData }) {
 
   return (
     <div className="game-container">
+      <div className="background-container">
+        <div className="grid-lines"></div>
+        <div className="background-base"></div>
+      </div>
       <section className="scores-container">
         <ul>
           {challengeState.guesses.map(({ score }, i) => (
