@@ -14,6 +14,20 @@ export const SiteMenuContainer = () => {
               <p>Content</p>
             </div>
           </div>
+          <div className="drawer-footer">
+            <div>
+              <p>Where in the Worldle © {new Date().getFullYear()}</p>
+            </div>
+            <div>
+              <a
+                href="https://buymeacoffee.com/brendanbeltz
+"
+                target="_blank"
+              >
+                Buy me a 🌮
+              </a>
+            </div>
+          </div>
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>

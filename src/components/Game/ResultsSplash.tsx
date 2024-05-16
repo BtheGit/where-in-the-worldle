@@ -22,51 +22,54 @@ export default function ResultsSplash(props: ResultsSplashProps) {
   }
   return (
     <div className="results-container">
-      <>
-        <div className="results__nav">
-          <button
-            className="btn--close"
-            onClick={() => {
-              setIsActive(false);
-            }}
-          >
-            x
-          </button>
-        </div>
-        <div className="results__main">
-          <h1>Results for {new Date(date).toLocaleDateString()}</h1>
-          <p>[FLAVOR TEXT]</p>
-          <ul className="results__chart">
-            {challengeState.guesses.map((guess, i) => {
-              const { distance, score } = guess;
-              const roundedDistance = `${
-                distance >= 1000
-                  ? Math.round(((distance / 1000 + Number.EPSILON) * 10) / 10)
-                  : Math.round(distance)
-              }`;
-              const units = distance >= 1000 ? "km" : "m";
+      <div className="results__nav">
+        <button
+          className="btn--close"
+          onClick={() => {
+            setIsActive(false);
+          }}
+        >
+          ✕
+        </button>
+      </div>
+      <p className="results__location ribbon">
+        {challengeState.location.city}, {challengeState.location.country}{" "}
+        <span>
+          (pop. {challengeState.location.population.toLocaleString()})
+        </span>
+      </p>
+      <div className="results__main">
+        {/* <p>[FLAVOR TEXT]</p> */}
+        <p className="results__game-title">Where in the Worldle</p>
+        <p>#20</p>
+        <ul className="results__chart">
+          {challengeState.guesses.map((guess, i) => {
+            const { distance, score } = guess;
+            const roundedDistance = `${
+              distance >= 1000
+                ? Math.round(((distance / 1000 + Number.EPSILON) * 10) / 10)
+                : Math.round(distance)
+            }`;
+            const units = distance >= 1000 ? "km" : "m";
 
-              return (
-                <li key={i}>
-                  <div className={`score score--${score}`}>
-                    <p>{i + 1}.</p>
-                    <p className="guess-distance">
-                      {roundedDistance}
-                      <span>{units}</span>
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-          <div>
-            <p>Come back tomorrow to play again.</p>
-            <p>
-              The next daily challenge will be available in [live countdown]
-            </p>
-          </div>
+            return (
+              <li key={i} className="score-container">
+                <div className={`score score--${score}`}>
+                  <p className="guess-distance">
+                    {roundedDistance}
+                    <span>{units}</span>
+                  </p>
+                  <p className="score__count">{i + 1}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="results__timer-container">
+          <p>Next challenge in:</p>
+          <p>[TIMER]</p>
         </div>
-      </>
+      </div>
     </div>
   );
 }

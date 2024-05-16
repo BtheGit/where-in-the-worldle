@@ -60,7 +60,7 @@ header {
   height: 100%;
   position: absolute;
   background-position: -2px -2px;
-  box-shadow: 0 0 500px 200px black inset;
+  box-shadow: 0 0 500px 150px black inset;
 }
 @supports not (opacity: round(1, 1)) {
   .grid-lines {
@@ -196,6 +196,9 @@ header {
 
 .score {
   background: var(--primary-color-guess);
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px -8px black;
 }
 
 .scores-container .score {
@@ -220,9 +223,14 @@ header {
   left: 10%;
   height: 80%;
   width: 80%;
-  background: rgba(79, 79, 79, 0.829);
+  background: rgba(68, 175, 196, 0.95);
+  color: whtie;
   z-index: 100;
   text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .results__nav {
@@ -231,38 +239,179 @@ header {
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .results__nav button.btn--close {
-  padding: 5px;
-  margin-right: 10px;
-  border: 1px solid purple;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  height: 35px;
+  width: 35px;
+  font-size: 20px;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(36, 93, 105);
+  color: white;
   cursor: pointer;
+}
+
+/* HTML: <div class="ribbon">Your text content</div>  https://css-generators.com/ribbon-shapes/ */
+
+.results__location {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: inherit;
+}
+
+.results__location span {
+  font-size: 0.6em;
+}
+
+.ribbon {
+  background: #1f8fcf;
+  padding: 5px 0;
+  box-shadow: 0 7px 7px -5px #15788c;
+  border-radius: 2px;
 }
 
 .results__main {
   padding: 20px;
+  flex: 1 0;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.results-container h1 {
-  font-size: 2rem;
+.results__game-title {
+  font-size: 25px;
 }
 
 .results__chart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1 0;
 }
 
-.results__chart .score {
+.score-container {
+  width: 25%;
+  min-width: 25%;
+  margin: 0 20px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.score-container .score {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 22px;
-  height: 50px;
-  max-width: 250px;
-  margin: 5px auto;
+  height: 60px;
   padding: 0 15px;
   color: black;
 }
 
+.score__count {
+  position: absolute;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgb(98, 206, 228);
+  color: rgb(33, 33, 33);
+  box-shadow: 0 5px 15px -5px black;
+}
+
+@media screen and (min-height: 500px) {
+  .results__main {
+    padding-top: 10px;
+  }
+
+  .results__chart {
+    display: block;
+  }
+
+  .score-container {
+    width: 50%;
+    max-width: 250px;
+    margin: 10px auto;
+  }
+
+  .score-container .score {
+    height: 50px;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  .results__main {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .ribbon {
+    --s: 1.8em; /* the ribbon size */
+    --d: 0.8em; /* the depth */
+    --c: 0.8em; /* the cutout part */
+
+    box-shadow: none;
+    padding: 0 calc(var(--s) + 0.5em) var(--d);
+    line-height: 1.5;
+    background: conic-gradient(
+          at left var(--s) bottom var(--d),
+          #0000 25%,
+          #0008 0 37.5%,
+          #0004 0
+        )
+        0 /50% 100% no-repeat,
+      conic-gradient(
+          at right var(--s) bottom var(--d),
+          #0004 62.5%,
+          #0008 0 75%,
+          #0000 0
+        )
+        100%/50% 100% no-repeat;
+    clip-path: polygon(
+      0 var(--d),
+      var(--s) var(--d),
+      var(--s) 0,
+      calc(100% - var(--s)) 0,
+      calc(100% - var(--s)) var(--d),
+      100% var(--d),
+      calc(100% - var(--c)) calc(50% + var(--d) / 2),
+      100% 100%,
+      calc(100% - var(--s) - var(--d)) 100%,
+      calc(100% - var(--s) - var(--d)) calc(100% - var(--d)),
+      calc(var(--s) + var(--d)) calc(100% - var(--d)),
+      calc(var(--s) + var(--d)) 100%,
+      0 100%,
+      var(--c) calc(50% + var(--d) / 2)
+    );
+    background-color: #1f8fcf; /* the main color */
+  }
+}
+
 .guess-distance span {
   font-size: 0.75em;
+}
+
+.results__timer-container {
+  margin-top: auto;
 }

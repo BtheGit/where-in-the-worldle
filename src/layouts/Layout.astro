@@ -27,8 +27,12 @@ const { title } = Astro.props;
       data-domain="whereintheworldle.com"
       src="https://plausible.sunflowersandsky.com/js/script.js"></script>
     <PostHog />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+    </style>
   </head>
   <body>
     <slot />
-  </body><style is:global></style>
+    <style is:global></style>
+  </body>
 </html>

@@ -26,6 +26,7 @@ export default function Carousel(props: CarouselProps) {
         swiperRef.current = s;
       }}
       navigation={true}
+      grabCursor={true}
       modules={[Navigation]}
       allowTouchMove={false}
     >

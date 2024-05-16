@@ -80,3 +80,22 @@
   max-width: 28rem;
   margin: 0 auto;
 }
+
+.drawer-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    45deg,
+    rgb(222 239 255) 22%,
+    rgb(211 220 255) 59%
+  );
+  color: black;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.drawer-footer a {
+  cursor: pointer;
+}
