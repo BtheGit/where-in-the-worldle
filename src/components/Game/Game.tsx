@@ -17,8 +17,8 @@ export type IGameProps = {
 export default function Game(props: IGameProps) {
   const { challengeId } = props;
   const endpoint = `/api/v1/${
-    challengeId ? `challenge/${challengeId}` : "daily-challenge"
-  }.json`;
+    challengeId ? `challenge/${challengeId}` : "daily-challenge.json"
+  }`;
   const { data, error } = useFetch(endpoint);
   // TODO: Error Screen
   // TODO: Loading Screen
