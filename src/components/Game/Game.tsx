@@ -68,6 +68,11 @@ export function Challenge(props: { challenge: INewGameData }) {
     };
   }, [isHover]);
 
+  useEffect(() => {
+    if (challengeState.isFinished) {
+      setIsResultsActive(true);
+    }
+  }, [challengeState.isFinished]);
   return (
     <div className="game-container">
       <div className="title-overlay-container">
