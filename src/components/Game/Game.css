@@ -157,27 +157,27 @@ header {
 }
 
 .score--0 {
-  --primary-color-guess: red;
+  --primary-color-guess: var(--score-primary-0);
 }
 
 .score--1 {
-  --primary-color-guess: orange;
+  --primary-color-guess: var(--score-primary-1);
 }
 
 .score--2 {
-  --primary-color-guess: yellow;
+  --primary-color-guess: var(--score-primary-2);
 }
 
 .score--3 {
-  --primary-color-guess: chartreuse;
+  --primary-color-guess: var(--score-primary-3);
 }
 
 .score--4 {
-  --primary-color-guess: green;
+  --primary-color-guess: var(--score-primary-4);
 }
 
 .score--5 {
-  --primary-color-guess: rgb(136, 0, 177);
+  --primary-color-guess: var(--score-primary-5);
 }
 
 .scores-container {

@@ -54,3 +54,16 @@ body {
   overflow: hidden;
   position: relative;
 }
+
+h1 {
+  font-family: "Lobster Two", system-ui;
+}
+
+:root {
+  --score-primary-0: red;
+  --score-primary-1: orange;
+  --score-primary-2: yellow;
+  --score-primary-3: chartreuse;
+  --score-primary-4: green;
+  --score-primary-5: rgb(136, 0, 177);
+}
