@@ -119,7 +119,7 @@ export default function LeafletEmbed({
           : [lat, lng]
       }
       zoom={2}
-      attributionControl={true}
+      attributionControl={false}
       ref={(map: L.Map | null) => {
         // https://github.com/PaulLeCam/react-leaflet/issues/974
         // Change to accomodate deprecated whenCreated method
