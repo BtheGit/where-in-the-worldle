@@ -136,6 +136,9 @@ export const SiteMenuContainer = () => {
             <div>
               <p>Where in the Worldle © {new Date().getFullYear()}</p>
             </div>
+            <div style={{ margin: "0 auto", fontSize: ".75em" }}>
+              Maps & Satellite Imagery © Mapbox, © OpenStreetMap
+            </div>
             <div>
               <a
                 href="https://buymeacoffee.com/brendanbeltz
