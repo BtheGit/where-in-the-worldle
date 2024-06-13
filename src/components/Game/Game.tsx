@@ -38,6 +38,8 @@ export function Challenge(props: { challenge: INewGameData }) {
   const [challengeState, submitGuess] = useChallenge(challenge);
   const [position, setPosition] = useState<null | ILocation>(null);
   const [mapActive, setMapActive] = useState(false);
+  const [isResultsActive, setIsResultsActive] = useState(false);
+
   useEffect(() => {
     document.addEventListener("click", (e) => {
       if (
@@ -74,6 +76,26 @@ export function Challenge(props: { challenge: INewGameData }) {
       <div className="background-container">
         <div className="grid-lines"></div>
         <div className="background-base"></div>
+        {challengeState.isFinished && (
+          <button
+            style={{
+              zIndex: 99,
+              position: "absolute",
+              top: "75px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              padding: "10px 20px",
+              fontFamily: "Lobster Two",
+              fontSize: "2rem",
+              background: "linear-gradient(45deg, #241ad8, #11a568 80%)",
+              borderRadius: "10px",
+              boxShadow: "0 10px 5px -8px black",
+            }}
+            onClick={() => setIsResultsActive(true)}
+          >
+            Results
+          </button>
+        )}
       </div>
       <section className="scores-container">
         <ul>
@@ -124,7 +146,12 @@ export function Challenge(props: { challenge: INewGameData }) {
         </section>
       </Draggable>
       {challengeState.isFinished && (
-        <ResultsSplash challengeState={challengeState} date={challenge.date} />
+        <ResultsSplash
+          challengeState={challengeState}
+          date={challenge.date}
+          isActive={isResultsActive}
+          setIsActive={setIsResultsActive}
+        />
       )}
     </div>
   );

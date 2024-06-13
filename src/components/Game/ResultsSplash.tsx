@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import type { IGameState, INewGameData } from "../../types";
 
 export type ResultsSplashProps = {
   challengeState: IGameState;
   date: INewGameData["date"];
+  isActive: boolean;
+  setIsActive: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function ResultsSplash(props: ResultsSplashProps) {
-  const { challengeState, date } = props;
-  const [isActive, setIsActive] = useState(true);
+  const { challengeState, date, isActive, setIsActive } = props;
+
   // TODOS: MVP
   // [x] Challenge date
   // Flavor text based on results
