@@ -68,6 +68,9 @@ export function Challenge(props: { challenge: INewGameData }) {
 
   return (
     <div className="game-container">
+      <div className="title-overlay-container">
+        <p>Where in the Worldle?</p>
+      </div>
       <div className="background-container">
         <div className="grid-lines"></div>
         <div className="background-base"></div>

@@ -12,6 +12,35 @@ header {
   color: white;
 }
 
+.title-overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  background: linear-gradient(
+    rgb(2, 0, 36),
+    rgba(2, 0, 36, 0.3) 30%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  padding: 0 10vw;
+  padding-top: 5px;
+}
+
+.title-overlay-container p {
+  font-size: 2rem;
+  background: -webkit-linear-gradient(45deg, #241ad8, #11a568 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Lobster Two;
+  font-weight: bolder;
+  filter: drop-shadow(0 0 4px black);
+}
+
 .game-container {
   position: relative;
   height: 100%;
