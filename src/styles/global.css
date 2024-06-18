@@ -60,10 +60,10 @@ h1 {
 }
 
 :root {
-  --score-primary-0: red;
-  --score-primary-1: orange;
-  --score-primary-2: yellow;
-  --score-primary-3: chartreuse;
-  --score-primary-4: green;
-  --score-primary-5: rgb(136, 0, 177);
+  --score-primary-0: #ff0000;
+  --score-primary-1: #ffa500;
+  --score-primary-2: #ffff00;
+  --score-primary-3: #7fff00;
+  --score-primary-4: #008000;
+  --score-primary-5: #8800b1;
 }
