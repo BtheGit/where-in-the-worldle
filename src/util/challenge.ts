@@ -22,20 +22,28 @@ export function haversineDistance(
 
 export const generate = async () => {
   const location = await getLocation(10);
-  const ZOOM_LEVELS = [15.5, 14, 12, 10, 8, 6.5, 3];
-  const { lat, lng } = location;
-  const images = ZOOM_LEVELS.map((zoom) => getStaticUrl({ lat, lng, zoom }));
+  const images = sourceMapImagesByLocation(location);
   const gameData: INewGameData = { location, images, date: Date.now() };
   return gameData;
 };
 
 export const generateById = async (locationId: number = 10) => {
   const location = await getLocation(locationId);
-  const ZOOM_LEVELS = [15.5, 14, 12, 10, 8, 6.5, 3];
-  const { lat, lng } = location;
-  const images = ZOOM_LEVELS.map((zoom) => getStaticUrl({ lat, lng, zoom }));
+  const images = sourceMapImagesByLocation(location);
   const gameData: INewGameData = { location, images, date: Date.now() };
   return gameData;
+};
+
+export const sourceMapImagesByLocation = ({
+  lat,
+  lng,
+}: {
+  lat: number;
+  lng: number;
+}) => {
+  const ZOOM_LEVELS = [15.5, 14, 12, 10, 8, 6.5, 3];
+  const images = ZOOM_LEVELS.map((zoom) => getStaticUrl({ lat, lng, zoom }));
+  return images;
 };
 
 export const calculateScore = (proportionBasis: number, distance: number) => {
