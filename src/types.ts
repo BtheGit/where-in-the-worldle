@@ -32,7 +32,7 @@ export type ILocation = {
 
 export type IGameState = {
   id: string;
-  location: ILocation;
+  location: IWorldCity;
   images: string[];
   guesses: ILocationGuess[];
   isFinished: boolean;
